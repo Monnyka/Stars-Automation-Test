@@ -6,8 +6,10 @@
       <class name="tests.MainScreen">
         <methods>
           <include name="teardown"/>
+          <include name="mainScreen_TCMS02"/>
+          <include name="mainScreen_TCMC01"/>
+          <include name="mainScreen_TCMS01"/>
           <include name="setup"/>
-          <include name="mainscreen_TCMC01"/>
         </methods>
       </class> <!-- tests.MainScreen -->
     </classes>

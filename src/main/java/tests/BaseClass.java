@@ -5,6 +5,18 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
+
+
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -13,10 +25,6 @@ import org.testng.Reporter;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -30,66 +38,40 @@ public class BaseClass {
 	@BeforeTest
 	public void setup() throws MalformedURLException {
 		try {
-		DesiredCapabilities cap = new DesiredCapabilities();
-		cap.setCapability("deviceName","oneplus" );
-		cap.setCapability("udid","88960370" );
-		cap.setCapability("platformName","Android" );
-		cap.setCapability("platformVersion","10");
-		cap.setCapability("appPackage","com.pathmazing.stars" );
-		cap.setCapability("appActivity","com.pathmazing.stars.ui.activities.SplashScreen2Activity" );//LoginActivity
-		URL url = new URL("http://127.0.0.1:4723/wd/hub");
-		driver= new AppiumDriver<MobileElement>(url, cap);
-		driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
-		
-		}catch(Exception exp) {
-			System.out.print("Cause is: "+exp);
-			System.out.print("Message: "+exp.getMessage());
+			DesiredCapabilities cap = new DesiredCapabilities();
+			cap.setCapability("deviceName", "oneplus");
+			cap.setCapability("udid", "88960370");
+			cap.setCapability("platformName", "Android");
+			cap.setCapability("platformVersion", "10");
+			cap.setCapability("appPackage", "com.pathmazing.stars");
+			cap.setCapability("appActivity", "com.pathmazing.stars.ui.activities.SplashScreen2Activity");//LoginActivity
+			URL url = new URL("http://127.0.0.1:4723/wd/hub");
+			driver = new AppiumDriver<MobileElement>(url, cap);
+			driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+
+		} catch (Exception exp) {
+			System.out.print("Cause is: " + exp);
+			System.out.print("Message: " + exp.getMessage());
 			exp.printStackTrace();
 		}
-		
+
 	}
-	
+
 	@Test
 	public void sampleTest() {
-		System.out.print("Success runing TestNG...");
+		System.out.print("Success running TestNG...");
 	}
 
 	@AfterTest
 	public void teardown() {
 		//driver.quit();
 	}
-	
-	public void setFail() {
-	ITestResult result = null;
-	result.setStatus(ITestResult.FAILURE);
-	Reporter.setCurrentTestResult(result);
-	}
 
-//	public String readExcelField(int vRow, int vColumn){
-////			String value=null;          //variable for storing the cell value
-////			Workbook wb=null;
-////			//initialize Workbook null
-////			try
-////			{
-////			//reading data from a file in the form of bytes
-////				FileInputStream fis=new FileInputStream("./EmployeeData.xlsx");
-////			//constructs an XSSFWorkbook object, by buffering the whole stream into the memory
-////				wb=new XSSFWorkbook(fis);
-////			}
-////			catch(FileNotFoundException e)
-////			{
-////				e.printStackTrace();
-////			}
-////			catch(IOException e1)
-////			{
-////				e1.printStackTrace();
-////			}
-////			Sheet sheet=wb.getSheetAt(0);   //getting the XSSFSheet object at given index
-////			Row row=sheet.getRow(vRow); //returns the logical row
-////			Cell cell=row.getCell(vColumn); //getting the cell representing the given column
-////			value=cell.getStringCellValue();    //getting cell value
-//			return
-//	}
+	public void setFail() {
+		ITestResult result = null;
+		result.setStatus(ITestResult.FAILURE);
+		Reporter.setCurrentTestResult(result);
+	}
 
 	public void clickBtnBack(){
 		MobileElement btnBack = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]"));
@@ -108,8 +90,27 @@ public class BaseClass {
 
 	public String getText(String element){
 		MobileElement getText = driver.findElement(By.id(element));
-		String text = getText.getText();
-		return text;
+		return getText.getText();
+	}
+
+	public String readExcelFile(int row, int column){
+		XSSFWorkbook wb;
+		XSSFCell cell;
+		XSSFSheet sh;
+		String value="";
+		try{
+			FileInputStream fis = new FileInputStream("C:\\Users\\PathmazingPC\\Desktop\\Staff Data\\staffdata.xlsx");
+			wb = (XSSFWorkbook) WorkbookFactory.create(fis);
+			sh = wb.getSheet("data");
+			//int noOfRow = sh.getLastRowNum();
+			//System.out.println("The row number is: "+noOfRow);
+			cell = sh.getRow(row).getCell(column);
+			value=(cell.toString());
+
+		}catch (Exception exp){
+			System.out.println(exp.getMessage());
+		}
+		return value;
 	}
 
 	public void scrollUsingTouchAction(String direction){
