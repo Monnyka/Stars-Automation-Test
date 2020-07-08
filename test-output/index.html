@@ -26,7 +26,7 @@
       <span class="top-banner-title-font">Test results</span>
       <button id="button" class="button">Switch Retro Theme</button> <!-- button -->
       <br/>
-      <span class="top-banner-font-1">1 suite, 3 failed tests</span>
+      <span class="top-banner-font-1">1 suite, 3 failed Testcase</span>
     </div> <!-- top-banner-root -->
     <div class="navigator-root">
       <div class="navigator-suite-header">
@@ -104,17 +104,17 @@
                     <div class="method-list-content failed suite-Default_suite">
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMC01">mainScreen_TCMC01</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Testcase.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMC01">mainScreen_TCMC01</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMS01">mainScreen_TCMS01</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Testcase.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMS01">mainScreen_TCMS01</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                       <span>
                         <img src="failed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMS02">mainScreen_TCMS02</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Testcase.MainScreen" class="method navigator-link" hash-for-method="mainScreen_TCMS02">mainScreen_TCMS02</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content failed suite-Default_suite -->
@@ -128,7 +128,7 @@
                     <div class="method-list-content passed suite-Default_suite">
                       <span>
                         <img src="passed.png" width="3%"/>
-                        <a href="#" panel-name="suite-Default_suite" title="tests.MainScreen" class="method navigator-link" hash-for-method="sampleTest">sampleTest</a> <!-- method navigator-link -->
+                        <a href="#" panel-name="suite-Default_suite" title="Testcase.MainScreen" class="method navigator-link" hash-for-method="sampleTest">sampleTest</a> <!-- method navigator-link -->
                       </span>
                       <br/>
                     </div> <!-- method-list-content passed suite-Default_suite -->
@@ -146,7 +146,7 @@
           <div class="suite-Default_suite-class-failed">
             <div class="main-panel-header rounded-window-top">
               <img src="failed.png"/>
-              <span class="class-name">tests.MainScreen</span>
+              <span class="class-name">Testcase.MainScreen</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -155,37 +155,39 @@
                   </a> <!-- mainScreen_TCMC01 -->
                   <span class="method-name">mainScreen_TCMC01</span>
                   <div class="stack-trace">java.lang.NullPointerException
-	at tests.MainScreen.mainScreen_TCMC01(MainScreen.java:17)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:588)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
-	at org.testng.TestNG.runSuites(TestNG.java:1066)
-	at org.testng.TestNG.run(TestNG.java:1034)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+                      at Testcase.MainScreen.mainScreen_TCMC01(MainScreen.java:17)
+                      at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                      at
+                      java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                      at
+                      java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                      at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+                      at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+                      at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+                      at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+                      at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+                      at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
+                      at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+                      at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+                      at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+                      at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+                      at org.testng.TestRunner.privateRun(TestRunner.java:767)
+                      at org.testng.TestRunner.run(TestRunner.java:588)
+                      at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+                      at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+                      at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+                      at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+                      at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+                      at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+                      at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
+                      at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
+                      at org.testng.TestNG.runSuites(TestNG.java:1066)
+                      at org.testng.TestNG.run(TestNG.java:1034)
+                      at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+                      at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+                      at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 
-</div> <!-- stack-trace -->
+                  </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -193,41 +195,44 @@
                   <a name="mainScreen_TCMS01">
                   </a> <!-- mainScreen_TCMS01 -->
                   <span class="method-name">mainScreen_TCMS01</span>
-                  <div class="stack-trace">java.lang.Error: Unresolved compilation problem: 
-	Cannot switch on a value of type String for source level below 1.7. Only convertible int values or enum variables are permitted
+                  <div class="stack-trace">java.lang.Error: Unresolved compilation problem:
+                      Cannot switch on a value of type String for source level below 1.7. Only convertible int values or
+                      enum variables are permitted
 
-	at tests.BaseClass.scrollUsingTouchAction(BaseClass.java:120)
-	at tests.MainScreen.mainScreen_TCMS01(MainScreen.java:47)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:588)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
-	at org.testng.TestNG.runSuites(TestNG.java:1066)
-	at org.testng.TestNG.run(TestNG.java:1034)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+                      at Testcase.BaseClass.scrollUsingTouchAction(BaseClass.java:120)
+                      at Testcase.MainScreen.mainScreen_TCMS01(MainScreen.java:47)
+                      at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                      at
+                      java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                      at
+                      java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                      at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+                      at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+                      at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+                      at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+                      at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+                      at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
+                      at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+                      at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+                      at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+                      at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+                      at org.testng.TestRunner.privateRun(TestRunner.java:767)
+                      at org.testng.TestRunner.run(TestRunner.java:588)
+                      at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+                      at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+                      at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+                      at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+                      at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+                      at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+                      at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
+                      at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
+                      at org.testng.TestNG.runSuites(TestNG.java:1066)
+                      at org.testng.TestNG.run(TestNG.java:1034)
+                      at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+                      at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+                      at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 
-</div> <!-- stack-trace -->
+                  </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
               <div class="method">
@@ -236,38 +241,40 @@
                   </a> <!-- mainScreen_TCMS02 -->
                   <span class="method-name">mainScreen_TCMS02</span>
                   <div class="stack-trace">java.lang.NullPointerException
-	at tests.BaseClass.getText(BaseClass.java:110)
-	at tests.MainScreen.mainScreen_TCMS02(MainScreen.java:59)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:567)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
-	at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
-	at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
-	at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
-	at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
-	at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
-	at org.testng.TestRunner.privateRun(TestRunner.java:767)
-	at org.testng.TestRunner.run(TestRunner.java:588)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:286)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
-	at org.testng.TestNG.runSuites(TestNG.java:1066)
-	at org.testng.TestNG.run(TestNG.java:1034)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+                      at Testcase.BaseClass.getText(BaseClass.java:110)
+                      at Testcase.MainScreen.mainScreen_TCMS02(MainScreen.java:59)
+                      at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+                      at
+                      java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+                      at
+                      java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+                      at java.base/java.lang.reflect.Method.invoke(Method.java:567)
+                      at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:135)
+                      at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:598)
+                      at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:174)
+                      at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+                      at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:821)
+                      at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:147)
+                      at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+                      at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+                      at java.base/java.util.ArrayList.forEach(ArrayList.java:1507)
+                      at org.testng.TestRunner.privateRun(TestRunner.java:767)
+                      at org.testng.TestRunner.run(TestRunner.java:588)
+                      at org.testng.SuiteRunner.runTest(SuiteRunner.java:384)
+                      at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:378)
+                      at org.testng.SuiteRunner.privateRun(SuiteRunner.java:337)
+                      at org.testng.SuiteRunner.run(SuiteRunner.java:286)
+                      at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+                      at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+                      at org.testng.TestNG.runSuitesSequentially(TestNG.java:1214)
+                      at org.testng.TestNG.runSuitesLocally(TestNG.java:1136)
+                      at org.testng.TestNG.runSuites(TestNG.java:1066)
+                      at org.testng.TestNG.run(TestNG.java:1034)
+                      at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+                      at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+                      at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 
-</div> <!-- stack-trace -->
+                  </div> <!-- stack-trace -->
                 </div> <!-- method-content -->
               </div> <!-- method -->
             </div> <!-- main-panel-content rounded-window-bottom -->
@@ -275,7 +282,7 @@
           <div class="suite-Default_suite-class-passed">
             <div class="main-panel-header rounded-window-top">
               <img src="passed.png"/>
-              <span class="class-name">tests.MainScreen</span>
+              <span class="class-name">Testcase.MainScreen</span>
             </div> <!-- main-panel-header rounded-window-top -->
             <div class="main-panel-content rounded-window-bottom">
               <div class="method">
@@ -299,7 +306,7 @@
 &lt;suite name=&quot;Default suite&quot; guice-stage=&quot;DEVELOPMENT&quot;&gt;
   &lt;test thread-count=&quot;5&quot; name=&quot;Default test&quot; verbose=&quot;2&quot;&gt;
     &lt;classes&gt;
-      &lt;class name=&quot;tests.MainScreen&quot;/&gt;
+      &lt;class name=&quot;Testcase.MainScreen&quot;/&gt;
     &lt;/classes&gt;
   &lt;/test&gt; &lt;!-- Default test --&gt;
 &lt;/suite&gt; &lt;!-- Default suite --&gt;
@@ -332,33 +339,33 @@
           <div class="main-panel-content rounded-window-bottom">
             <div class="times-div">
               <script type="text/javascript">
-suiteTableInitFunctions.push('tableData_Default_suite');
-function tableData_Default_suite() {
-var data = new google.visualization.DataTable();
-data.addColumn('number', 'Number');
-data.addColumn('string', 'Method');
-data.addColumn('string', 'Class');
-data.addColumn('number', 'Time (ms)');
-data.addRows(4);
-data.setCell(0, 0, 0)
-data.setCell(0, 1, 'sampleTest')
-data.setCell(0, 2, 'tests.MainScreen')
-data.setCell(0, 3, 18);
-data.setCell(1, 0, 1)
-data.setCell(1, 1, 'mainScreen_TCMC01')
-data.setCell(1, 2, 'tests.MainScreen')
-data.setCell(1, 3, 5);
-data.setCell(2, 0, 2)
-data.setCell(2, 1, 'mainScreen_TCMS01')
-data.setCell(2, 2, 'tests.MainScreen')
-data.setCell(2, 3, 1);
-data.setCell(3, 0, 3)
-data.setCell(3, 1, 'mainScreen_TCMS02')
-data.setCell(3, 2, 'tests.MainScreen')
-data.setCell(3, 3, 1);
-window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
-return data;
-}
+                  suiteTableInitFunctions.push('tableData_Default_suite');
+                  function tableData_Default_suite() {
+                  var data = new google.visualization.DataTable();
+                  data.addColumn('number', 'Number');
+                  data.addColumn('string', 'Method');
+                  data.addColumn('string', 'Class');
+                  data.addColumn('number', 'Time (ms)');
+                  data.addRows(4);
+                  data.setCell(0, 0, 0)
+                  data.setCell(0, 1, 'sampleTest')
+                  data.setCell(0, 2, 'Testcase.MainScreen')
+                  data.setCell(0, 3, 18);
+                  data.setCell(1, 0, 1)
+                  data.setCell(1, 1, 'mainScreen_TCMC01')
+                  data.setCell(1, 2, 'Testcase.MainScreen')
+                  data.setCell(1, 3, 5);
+                  data.setCell(2, 0, 2)
+                  data.setCell(2, 1, 'mainScreen_TCMS01')
+                  data.setCell(2, 2, 'Testcase.MainScreen')
+                  data.setCell(2, 3, 1);
+                  data.setCell(3, 0, 3)
+                  data.setCell(3, 1, 'mainScreen_TCMS02')
+                  data.setCell(3, 2, 'Testcase.MainScreen')
+                  data.setCell(3, 3, 1);
+                  window.suiteTableData['Default_suite']= { tableData: data, tableDiv: 'times-div-Default_suite'}
+                  return data;
+                  }
               </script>
               <span class="suite-total-time">Total running time: 25 ms</span>
               <div id="times-div-Default_suite">
@@ -386,7 +393,7 @@ return data;
           </div> <!-- main-panel-header rounded-window-top -->
           <div class="main-panel-content rounded-window-bottom">
             <div class="chronological-class">
-              <div class="chronological-class-name">tests.MainScreen</div> <!-- chronological-class-name -->
+              <div class="chronological-class-name">Testcase.MainScreen</div> <!-- chronological-class-name -->
               <div class="configuration-test before">
                 <span class="method-name">setup</span>
                 <span class="method-start">0 ms</span>

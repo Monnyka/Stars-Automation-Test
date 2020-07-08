@@ -3,7 +3,7 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="tests.MainScreen">
+      <class name="Testcase.MainScreen">
         <methods>
           <include name="teardown"/>
           <include name="mainScreen_TCMS02"/>
@@ -11,7 +11,7 @@
           <include name="mainScreen_TCMS01"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- tests.MainScreen -->
+      </class> <!-- Testcase.MainScreen -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

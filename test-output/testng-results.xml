@@ -6,20 +6,20 @@
     <groups>
     </groups>
     <test started-at="2020-07-07T08:56:48 ICT" name="Default test" finished-at="2020-07-07T08:56:53 ICT" duration-ms="5286">
-      <class name="tests.MainScreen">
-        <test-method is-config="true" signature="setup()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:48 ICT" name="setup" finished-at="2020-07-07T08:56:53 ICT" duration-ms="5186" status="PASS">
+      <class name="Testcase.MainScreen">
+        <test-method is-config="true" signature="setup()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:48 ICT" name="setup" finished-at="2020-07-07T08:56:53 ICT" duration-ms="5186" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="sampleTest()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="sampleTest" finished-at="2020-07-07T08:56:53 ICT" duration-ms="18" status="PASS">
+        <test-method signature="sampleTest()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="sampleTest" finished-at="2020-07-07T08:56:53 ICT" duration-ms="18" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- sampleTest -->
-        <test-method signature="mainScreen_TCMC01()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMC01" finished-at="2020-07-07T08:56:53 ICT" duration-ms="5" status="FAIL">
+        <test-method signature="mainScreen_TCMC01()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMC01" finished-at="2020-07-07T08:56:53 ICT" duration-ms="5" status="FAIL">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-at tests.MainScreen.mainScreen_TCMC01(MainScreen.java:17)
+                <![CDATA[java.lang.NullPointerException
+at Testcase.MainScreen.mainScreen_TCMC01(MainScreen.java:17)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -54,7 +54,7 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- mainScreen_TCMC01 -->
-        <test-method signature="mainScreen_TCMS01()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMS01" finished-at="2020-07-07T08:56:53 ICT" duration-ms="1" status="FAIL">
+        <test-method signature="mainScreen_TCMS01()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMS01" finished-at="2020-07-07T08:56:53 ICT" duration-ms="1" status="FAIL">
           <exception class="java.lang.Error">
             <message>
               <![CDATA[Unresolved compilation problem: 
@@ -62,11 +62,11 @@ Cannot switch on a value of type String for source level below 1.7. Only convert
 ]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.Error: Unresolved compilation problem: 
+                <![CDATA[java.lang.Error: Unresolved compilation problem:
 Cannot switch on a value of type String for source level below 1.7. Only convertible int values or enum variables are permitted
 
-at tests.BaseClass.scrollUsingTouchAction(BaseClass.java:120)
-at tests.MainScreen.mainScreen_TCMS01(MainScreen.java:47)
+at Testcase.BaseClass.scrollUsingTouchAction(BaseClass.java:120)
+at Testcase.MainScreen.mainScreen_TCMS01(MainScreen.java:47)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -101,12 +101,12 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- mainScreen_TCMS01 -->
-        <test-method signature="mainScreen_TCMS02()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMS02" finished-at="2020-07-07T08:56:53 ICT" duration-ms="1" status="FAIL">
+        <test-method signature="mainScreen_TCMS02()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="mainScreen_TCMS02" finished-at="2020-07-07T08:56:53 ICT" duration-ms="1" status="FAIL">
           <exception class="java.lang.NullPointerException">
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-at tests.BaseClass.getText(BaseClass.java:110)
-at tests.MainScreen.mainScreen_TCMS02(MainScreen.java:59)
+                <![CDATA[java.lang.NullPointerException
+at Testcase.BaseClass.getText(BaseClass.java:110)
+at Testcase.MainScreen.mainScreen_TCMS02(MainScreen.java:59)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -141,11 +141,11 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- mainScreen_TCMS02 -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:tests.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="teardown" finished-at="2020-07-07T08:56:53 ICT" duration-ms="0" status="PASS">
+        <test-method is-config="true" signature="teardown()[pri:0, instance:Testcase.MainScreen@78aab498]" started-at="2020-07-07T08:56:53 ICT" name="teardown" finished-at="2020-07-07T08:56:53 ICT" duration-ms="0" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- tests.MainScreen -->
+      </class> <!-- Testcase.MainScreen -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
