@@ -30,28 +30,6 @@ public class BaseClass {
 
     public AppiumDriver<MobileElement> driver;
 
-    public static void writeExcelFile(int cRow, int cColumn, String value) {
-        XSSFWorkbook wb;
-        XSSFCell cell;
-        XSSFSheet sh;
-        try {
-            FileInputStream fis = new FileInputStream("./data.xlsx");
-            wb = (XSSFWorkbook) WorkbookFactory.create(fis);
-            sh = wb.getSheet("Testcase/data");
-            XSSFRow row = sh.createRow(cRow);
-            cell = row.createCell(cColumn);
-            cell.setCellValue(value);
-            FileOutputStream fos = new FileOutputStream("./data.xlsx");
-            wb.write(fos);
-            fos.flush();
-            fos.close();
-            System.out.println("Record has been updated successfully");
-
-        } catch (Exception exp) {
-            System.out.println(exp.getMessage());
-        }
-    }
-
     @BeforeTest
     public void setup() throws MalformedURLException {
         try {
@@ -121,9 +99,9 @@ public class BaseClass {
         XSSFSheet sh;
         String value = "";
         try {
-            FileInputStream fis = new FileInputStream("C:\\Users\\PathmazingPC\\Desktop\\Staff Data\\data.xlsx");
+            FileInputStream fis = new FileInputStream("./data.xlsx");
             wb = (XSSFWorkbook) WorkbookFactory.create(fis);
-            sh = wb.getSheet("Testcase/data");
+            sh = wb.getSheet("data");
             //int noOfRow = sh.getLastRowNum();
             //System.out.println("The row number is: "+noOfRow);
             cell = sh.getRow(row).getCell(column);
@@ -133,6 +111,28 @@ public class BaseClass {
             System.out.println(exp.getMessage());
         }
         return value;
+    }
+
+    public void writeExcelFile(int cRow, int cColumn, String value) {
+        XSSFWorkbook wb;
+        XSSFCell cell;
+        XSSFSheet sh;
+        try {
+            FileInputStream fis = new FileInputStream("./data.xlsx");
+            wb = (XSSFWorkbook) WorkbookFactory.create(fis);
+            sh = wb.getSheet("data");
+            XSSFRow row = sh.createRow(cRow);
+            cell = row.createCell(cColumn);
+            cell.setCellValue(value);
+            FileOutputStream fos = new FileOutputStream("./data.xlsx");
+            wb.write(fos);
+            fos.flush();
+            fos.close();
+            System.out.println("Record has been updated successfully");
+
+        } catch (Exception exp) {
+            System.out.println(exp.getMessage());
+        }
     }
 
     public void scrollUsingTouchAction(String direction) {
