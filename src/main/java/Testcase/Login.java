@@ -2,13 +2,13 @@ package Testcase;
 
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class Login extends BaseClass {
 
     @Test //Log in without input authentication
     public void logIn_TCLI01() {
-        //Log in without input authentication
         MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
         btnLogin.click();
         String message = driver.findElementById("android:id/message").getText();
@@ -22,7 +22,6 @@ public class Login extends BaseClass {
 
     @Test //Log in with incorrect email
     public void logIn_TCLI02() {
-        //Log in with incorrect email
         MobileElement emailfield = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
         emailfield.sendKeys("nykanano");
         MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
@@ -38,7 +37,6 @@ public class Login extends BaseClass {
 
     @Test //Log in with the incorrect email and password
     public void logIn_TCLI03() {
-        //Log in with incorrect email
         MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
         emailField.sendKeys("nykanano1231232@gmail.com");
         MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
@@ -109,9 +107,7 @@ public class Login extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
         String message = getText("android:id/message");
-        if (!message.equals("Are you sure you want to log out?")) {
-            setFail();
-        }
+        Assert.assertEquals(message,"Are you sure you wnat to log out?");
         clickById("android:id/button1");
     }
 
@@ -129,9 +125,7 @@ public class Login extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
         String message = getText("android:id/message");
-        if (!message.equals("Are you sure you want to log out?")) {
-            setFail();
-        }
+        Assert.assertEquals(message,"Are you sure you want to log out?");
         clickById("android:id/button1");
     }
 

@@ -2,11 +2,12 @@ package Testcase;
 
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class MainScreen extends BaseClass {
 
-    @Test
+    @Test(priority = 1)
     public void mainScreen_TCMC01() {
         //login
         MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
@@ -25,11 +26,7 @@ public class MainScreen extends BaseClass {
         btnNotification.click();
         MobileElement navTitle = driver.findElement(By.id("com.pathmazing.stars:id/text_view_titleBar"));
         String navTitleText = navTitle.getText();
-        if (!navTitleText.equals("Notifications")) {
-            setFail();
-
-
-        }
+        Assert.assertEquals(navTitleText,"Notifications");
         clickBtnBack();
     }
 
@@ -47,9 +44,7 @@ public class MainScreen extends BaseClass {
         }
         String earnedThisMonth = readExcelFile(2, 5);
         String earnedThisMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_this_month");
-        if (!earnedThisMonth.equals(earnedThisMonthNumber)) {
-            setFail();
-        }
+        Assert.assertEquals(earnedThisMonth,earnedThisMonthNumber);
     }
 
     @Test
@@ -57,44 +52,30 @@ public class MainScreen extends BaseClass {
         //Earn Last month
         String earnedLastMonth = readExcelFile(2, 6);
         String earnedLastMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_last_month");
-        if (!earnedLastMonth.equals(earnedLastMonthNumber)) {
-            setFail();
-            print("Wrong redeem stars");
-        }
-
+        Assert.assertEquals(earnedLastMonth,earnedLastMonthNumber);
         String redeemableBalance = getText("com.pathmazing.stars:id/tv_title_redeemable");
-        if (!redeemableBalance.equals("Redeemable Balance")) {
-            setFail();
-            print("Wrong redeem label");
-        }
-
+        Assert.assertEquals(redeemableBalance,"Redeemable Balance");
     }
 
     @Test
     public void mainScreen_TCMS03() {
         String allTime = readExcelFile(2, 7);
         String allTimeNumber = getText("com.pathmazing.stars:id/text_view_earn_point_total");
-        if (!allTime.equals(allTimeNumber)) {
-            setFail();
-        }
+        Assert.assertEquals(allTime,allTimeNumber);
     }
 
     @Test
     public void mainScreen_TCMS04() {
         String redeemBalance = readExcelFile(2, 3);
         String redeemBalanceNumber = getText("com.pathmazing.stars:id/text_view_redeem_star");
-        if (!redeemBalanceNumber.equals(redeemBalance)) {
-            setFail();
-        }
+        Assert.assertEquals(redeemBalance,redeemBalanceNumber);
     }
 
     @Test
     public void mainScreen_TCMS05() {
         clickById("com.pathmazing.stars:id/redeemable_view");
         String navTitle = getText("com.pathmazing.stars:id/tv_title");
-        if (!(navTitle.equals("Prizes To Redeem"))) {
-            setFail();
-        }
+        Assert.assertEquals(navTitle,"Prizes To Redeem");
         clickById("com.pathmazing.stars:id/ic_back");
     }
 
@@ -102,9 +83,7 @@ public class MainScreen extends BaseClass {
     public void mainScreen_TCMS09() {
         clickById("com.pathmazing.stars:id/image_view_menu");
         String userName = getText("text_view_name");
-        if ((userName == null) || userName.equals("")) {
-            setFail();
-        }
+        Assert.assertNotNull(userName);
         driver.navigate().back();
     }
 
@@ -113,9 +92,7 @@ public class MainScreen extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickById("com.pathmazing.stars:id/view_block_profile");
         String username = getText("com.pathmazing.stars:id/text_view_full_name");
-        if ((username == null) || username.equals("")) {
-            setFail();
-        }
+        Assert.assertNotNull(username);
         driver.navigate().back();
     }
 
@@ -125,45 +102,35 @@ public class MainScreen extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navTitle = getText("com.pathmazing.stars:id/tv_title");
-        if (!(navTitle.equals("Prizes To Redeem"))) {
-            setFail();
-        }
+        Assert.assertEquals(navTitle,"Prizes To Redeem");
         clickById("com.pathmazing.stars:id/ic_back");
 
         //Click on Auction
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[2]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navAucTitle = getText("com.pathmazing.stars:id/tv_title");
-        if (!(navAucTitle.equals("Auction"))) {
-            setFail();
-        }
+        Assert.assertEquals(navAucTitle,"Auction");
         clickById("com.pathmazing.stars:id/ic_back");
 
         //Click on Stars Activity
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[3]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navStarsActivitiesTitle = getText("com.pathmazing.stars:id/text_view_titleBar");
-        if (!navStarsActivitiesTitle.equals("Star Activities")) {
-            setFail();
-        }
+        Assert.assertEquals(navStarsActivitiesTitle,"Star Activities");
         clickBtnBack();
 
         //Click on Calendar
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[4]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navCalendarTitle = getText("com.pathmazing.stars:id/tvToolbarTitle");
-        if ((navCalendarTitle.equals(""))) {
-            setFail();
-        }
+        Assert.assertNotNull(navCalendarTitle);
         clickBtnBack();
 
         //Click on Staff List
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[5]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navStarsListTitle = getText("com.pathmazing.stars:id/employeeToolbarTitle");
-        if ((navStarsListTitle.equals(""))) {
-            setFail();
-        }
+        Assert.assertNotNull(navStarsListTitle);
         clickBtnBack();
 
         //Tap on Staff Ranking
@@ -247,9 +214,7 @@ public class MainScreen extends BaseClass {
     public void mainScreen_TCMS16() {
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[2]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.FrameLayout[2]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.RelativeLayout[1]/android.widget.LinearLayout/android.widget.ImageView");
         String userName = getText("com.pathmazing.stars:id/text_view_full_name");
-        if (userName.equals("")) {
-            setFail();
-        }
+        Assert.assertNotNull(userName);
         driver.navigate().back();
     }
 

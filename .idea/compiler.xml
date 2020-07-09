@@ -6,11 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="appiumtest" />
+        <module name="STARS Automation Testing" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="13">
-      <module name="appiumtest" target="1.8" />
+      <module name="STARS Automation Testing" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

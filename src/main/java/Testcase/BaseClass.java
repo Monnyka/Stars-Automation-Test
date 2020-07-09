@@ -15,9 +15,7 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -50,11 +48,6 @@ public class BaseClass {
             exp.printStackTrace();
         }
 
-    }
-
-    @Test
-    public void sampleTest() {
-        System.out.print("Success running TestNG...");
     }
 
     @AfterTest
@@ -156,6 +149,10 @@ public class BaseClass {
 
     public void print(String message) {
         System.out.print(message);
+    }
+
+    public void logInStaff(){
+
     }
 
 }
