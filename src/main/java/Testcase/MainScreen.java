@@ -7,20 +7,10 @@ import org.testng.annotations.Test;
 
 public class MainScreen extends BaseClass {
 
-    @Test(priority = 1)
+    @Test
     public void mainScreen_TCMC01() {
         //login
-        MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
-        emailField.sendKeys("nykanano@gmail.com");
-        MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
-        passwordField.sendKeys("Stars@2019");
-        MobileElement btnShowPassword = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Show password\"]"));
-        btnShowPassword.click();
-        MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
-        btnLogin.click();
-        MobileElement textViewFingerPrintLater = driver.findElement(By.id("com.pathmazing.stars:id/text_view_fingerprint_later"));
-        textViewFingerPrintLater.click();
-
+        loginStaff();
 //		Check screen
         MobileElement btnNotification = driver.findElement(By.id("com.pathmazing.stars:id/image_view_notification"));
         btnNotification.click();
@@ -42,7 +32,7 @@ public class MainScreen extends BaseClass {
             setFail();
             print("Wrong label");
         }
-        String earnedThisMonth = readExcelFile(2, 5);
+        String earnedThisMonth = readExcelFile(2, 5, "userData");
         String earnedThisMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_this_month");
         Assert.assertEquals(earnedThisMonth,earnedThisMonthNumber);
     }
@@ -50,7 +40,7 @@ public class MainScreen extends BaseClass {
     @Test
     public void mainScreen_TCMS02() {
         //Earn Last month
-        String earnedLastMonth = readExcelFile(2, 6);
+        String earnedLastMonth = readExcelFile(2, 6, "userData");
         String earnedLastMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_last_month");
         Assert.assertEquals(earnedLastMonth,earnedLastMonthNumber);
         String redeemableBalance = getText("com.pathmazing.stars:id/tv_title_redeemable");
@@ -59,14 +49,14 @@ public class MainScreen extends BaseClass {
 
     @Test
     public void mainScreen_TCMS03() {
-        String allTime = readExcelFile(2, 7);
+        String allTime = readExcelFile(2, 7,"userData");
         String allTimeNumber = getText("com.pathmazing.stars:id/text_view_earn_point_total");
         Assert.assertEquals(allTime,allTimeNumber);
     }
 
     @Test
     public void mainScreen_TCMS04() {
-        String redeemBalance = readExcelFile(2, 3);
+        String redeemBalance = readExcelFile(2, 3,"userData");
         String redeemBalanceNumber = getText("com.pathmazing.stars:id/text_view_redeem_star");
         Assert.assertEquals(redeemBalance,redeemBalanceNumber);
     }
@@ -222,7 +212,55 @@ public class MainScreen extends BaseClass {
     public void mainScreen_TCMS18() {
         scrollUsingTouchAction("up");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[2]/android.widget.LinearLayout/android.widget.RelativeLayout[2]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.ImageView");
-
     }
+
+    @Test
+    public void mainScreen_TCMS20(){
+        //Tap on count down event
+        scrollUsingTouchAction("down");
+        scrollUsingTouchAction("down");
+        clickById("com.pathmazing.stars:id/layout_calendar");
+        String navTitle = getText("com.pathmazing.stars:id/tvToolbarTitle");
+        Assert.assertNotNull(navTitle);
+        clickBtnBack();
+    }
+
+    @Test
+    public void mainScreen_TCMS21(){
+        //Allocated Balance
+        String allocatedStars = readExcelFile(4,5, "userData");
+        String allocatedStarsLabel = getText("com.pathmazing.stars:id/text_view_give_away_star");
+        Assert.assertEquals(allocatedStarsLabel,allocatedStars);
+        //Check Label Balance
+        String balanceLabel = getText("com.pathmazing.stars:id/text_view_star_left");
+        Assert.assertEquals(balanceLabel,"Balance");
+    }
+
+    @Test
+    public void mainScreen_TCMS22(){
+        clickById("com.pathmazing.stars:id/image_view_star_reward");
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView[2]");
+        String navTitle = getText("com.pathmazing.stars:id/employeeToolbarTitle");
+        Assert.assertNotNull(navTitle);
+        clickBtnBack();
+    }
+
+    @Test
+    public void mainScreen_TCMS23(){
+        // Tap on Staff button
+        String staffLabel = getText("com.pathmazing.stars:id/tv_staff");
+        Assert.assertEquals(staffLabel,"Staff");
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.ImageView");
+        String navTitle = getText("com.pathmazing.stars:id/employeeToolbarTitle");
+        Assert.assertNotNull(navTitle);
+        clickBtnBack();
+    }
+
+    @Test
+    public void mainScreen_TCMS24(){
+        driver.navigate().back();
+        driver.navigate().back();
+    }
+
 
 }

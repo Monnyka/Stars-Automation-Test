@@ -13,6 +13,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 import org.testng.annotations.*;
@@ -40,7 +41,7 @@ public class BaseClass {
             cap.setCapability("appActivity", "com.pathmazing.stars.ui.activities.SplashScreen2Activity");//LoginActivity
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
             driver = new AppiumDriver<MobileElement>(url, cap);
-            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+            waitImplicitly();
 
         } catch (Exception exp) {
             System.out.print("Cause is: " + exp);
@@ -66,8 +67,8 @@ public class BaseClass {
         btnBack.click();
     }
 
-    public void clickById(String element) {
-        MobileElement click = driver.findElement(By.id(element));
+    public void clickById(String id) {
+        MobileElement click = driver.findElement(By.id(id));
         click.click();
     }
 
@@ -86,7 +87,12 @@ public class BaseClass {
         return getText.getText();
     }
 
-    public String readExcelFile(int row, int column) {
+    public String getTextByXpath(String element) {
+        MobileElement getText = driver.findElement(By.xpath(element));
+        return getText.getText();
+    }
+
+    public String readExcelFile(int row, int column, String sheetName) {
         XSSFWorkbook wb;
         XSSFCell cell;
         XSSFSheet sh;
@@ -94,7 +100,7 @@ public class BaseClass {
         try {
             FileInputStream fis = new FileInputStream("./data.xlsx");
             wb = (XSSFWorkbook) WorkbookFactory.create(fis);
-            sh = wb.getSheet("data");
+            sh = wb.getSheet(sheetName);
             //int noOfRow = sh.getLastRowNum();
             //System.out.println("The row number is: "+noOfRow);
             cell = sh.getRow(row).getCell(column);
@@ -147,12 +153,30 @@ public class BaseClass {
         action.press(PointOption.point(x, startY)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(x, endY)).release().perform();
     }
 
+    public void waitImplicitly(){
+        driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+    }
+
     public void print(String message) {
         System.out.print(message);
     }
 
-    public void logInStaff(){
-
+    public void loginStaff(){
+        String userEmail = readExcelFile(4,1 ,"userData");
+        String userPassword = readExcelFile(4,3,"userData");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email",userEmail);
+        sendKeyById("com.pathmazing.stars:id/edit_text_password",userPassword);
+        clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
+        clickById("com.pathmazing.stars:id/button_login");
+        clickById("com.pathmazing.stars:id/text_view_fingerprint_later");
     }
 
+    public void logout(){
+        //logout
+        clickById("com.pathmazing.stars:id/image_view_menu");
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
+        String message = getText("android:id/message");
+        Assert.assertEquals(message,"Are you sure you want to log out?");
+        clickById("android:id/button1");
+    }
 }

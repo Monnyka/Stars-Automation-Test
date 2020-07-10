@@ -107,7 +107,7 @@ public class Login extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
         String message = getText("android:id/message");
-        Assert.assertEquals(message,"Are you sure you wnat to log out?");
+        Assert.assertEquals(message,"Are you sure you want to log out?");
         clickById("android:id/button1");
     }
 
@@ -121,17 +121,39 @@ public class Login extends BaseClass {
         btnShowPassword.click();
         MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
         btnLogin.click();
-        //logout
-        clickById("com.pathmazing.stars:id/image_view_menu");
-        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
-        String message = getText("android:id/message");
-        Assert.assertEquals(message,"Are you sure you want to log out?");
-        clickById("android:id/button1");
+        logout();
     }
 
     @Test //Log in First Time
     public void logIn_TCLI09(){
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","alvin.pa@mailinator.com");
+        sendKeyById("com.pathmazing.stars:id/edit_text_password","6BKE7L");
+        clickById("com.pathmazing.stars:id/button_login");
+        String navTitle = getText("com.pathmazing.stars:id/text_view_force_set_password_title");
+        Assert.assertEquals(navTitle,"Set New Password");
+        String newPasswordField = getText("com.pathmazing.stars:id/edit_text_new_password");
+        Assert.assertEquals(newPasswordField, "New Password");
+        String cnpField = getText("com.pathmazing.stars:id/edit_text_confirm_password");
+        Assert.assertEquals(cnpField,"Confirm New Password");
 
+        // validation field password
+        clickById("com.pathmazing.stars:id/button_submit");
+        String message = getText("android:id/message");
+        Assert.assertEquals(message,"Please enter your new password");
+        clickById("android:id/button1");
+
+        //Validate field confirm new password
+        sendKeyById("com.pathmazing.stars:id/edit_text_new_password","Stars@2019");
+        clickById("com.pathmazing.stars:id/button_submit");
+        message = getText("android:id/message");
+        Assert.assertEquals(message,"Please enter your confirm new password");
+        clickById("android:id/button1");
+
+        //Validate
+        String termsText = getText("com.pathmazing.stars:id/term_condition");
+        Assert.assertEquals(termsText,"By updating your password, you agree to STARS Terms of Use and Privacy Policy");
+        clickBtnBack();
+        //TODO: Add successful update password check
     }
 
     @Test //Tap on forget password
