@@ -112,14 +112,14 @@ public class BaseClass {
         return value;
     }
 
-    public void writeExcelFile(int cRow, int cColumn, String value) {
+    public void writeExcelFile(int cRow, int cColumn,String sheetName, String value) {
         XSSFWorkbook wb;
         XSSFCell cell;
         XSSFSheet sh;
         try {
             FileInputStream fis = new FileInputStream("./data.xlsx");
             wb = (XSSFWorkbook) WorkbookFactory.create(fis);
-            sh = wb.getSheet("data");
+            sh = wb.getSheet(sheetName);
             XSSFRow row = sh.createRow(cRow);
             cell = row.createCell(cColumn);
             cell.setCellValue(value);
@@ -162,8 +162,8 @@ public class BaseClass {
     }
 
     public void loginStaff(){
-        String userEmail = readExcelFile(4,1 ,"userData");
-        String userPassword = readExcelFile(4,3,"userData");
+        String userEmail = readExcelFile(6,1 ,"userData");
+        String userPassword = readExcelFile(12,1,"userData");
         sendKeyById("com.pathmazing.stars:id/edit_text_email",userEmail);
         sendKeyById("com.pathmazing.stars:id/edit_text_password",userPassword);
         clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
