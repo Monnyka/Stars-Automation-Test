@@ -1,17 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
-  <test thread-count="5" name="Default test(failed)">
+<suite name="Failed suite [Default Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Stars-Automation-Test(failed)">
     <classes>
-      <class name="Testcase.MainScreen">
+      <class name="Testcase.ChangePasswordOne">
         <methods>
           <include name="teardown"/>
-          <include name="mainScreen_TCMS02"/>
-          <include name="mainScreen_TCMC01"/>
-          <include name="mainScreen_TCMS01"/>
           <include name="setup"/>
+          <include name="ChangePassword_TCCP01"/>
+        </methods>
+      </class> <!-- Testcase.ChangePasswordOne -->
+      <class name="Testcase.Login">
+        <methods>
+          <include name="logIn_TCLI01"/>
+          <include name="teardown"/>
+          <include name="logIn_TCLI04"/>
+          <include name="logIn_TCLI10"/>
+          <include name="logIn_TCLI02"/>
+          <include name="logIn_TCLI05"/>
+          <include name="logIn_TCLI08"/>
+          <include name="logIn_TCLI03"/>
+          <include name="logIn_TCLI06"/>
+          <include name="logIn_TCLI09"/>
+          <include name="setup"/>
+          <include name="logIn_TCLI07"/>
+        </methods>
+      </class> <!-- Testcase.Login -->
+      <class name="Testcase.PrizeDetails">
+        <methods>
+          <include name="teardown"/>
+          <include name="prizeDetails_TCPD01"/>
+          <include name="prizeDetails_TCPD05"/>
+          <include name="setup"/>
+          <include name="prizeDetails_TCPD02"/>
+          <include name="prizeDetails_TCPD04"/>
+          <include name="prizeDetails_TCPD03"/>
+        </methods>
+      </class> <!-- Testcase.PrizeDetails -->
+      <class name="Testcase.StaffList">
+        <methods>
+          <include name="staffList_TCSL03"/>
+          <include name="staffList_TCSL14"/>
+          <include name="staffList_TCSL06"/>
+          <include name="teardown"/>
+          <include name="staffList_TCSL11"/>
+          <include name="staffList_TCSL10"/>
+          <include name="staffList_TCSL02"/>
+          <include name="staffList_TCSL13"/>
+          <include name="staffList_TCSL01"/>
+          <include name="staffList_TCSL12"/>
+          <include name="setup"/>
+          <include name="staffList_TCSL08"/>
+          <include name="staffList_TCSL07"/>
+          <include name="staffList_TCSL09"/>
+          <include name="staffList_TCSL04"/>
+        </methods>
+      </class> <!-- Testcase.StaffList -->
+      <class name="Testcase.PrizesToRedeem">
+        <methods>
+          <include name="prize_TCRI02"/>
+          <include name="prize_TCRI03"/>
+          <include name="teardown"/>
+          <include name="prize_TCRI01"/>
+          <include name="prize_TCRI04"/>
+          <include name="setup"/>
+          <include name="prize_TCRI06"/>
+          <include name="prize_TCRI07"/>
+          <include name="prize_TCRI05"/>
+        </methods>
+      </class> <!-- Testcase.PrizesToRedeem -->
+      <class name="Testcase.TeamList">
+        <methods>
+          <include name="teardown"/>
+          <include name="teamList_TCTL01"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- Testcase.TeamList -->
+      <class name="Testcase.MainScreen">
+        <methods>
+          <include name="mainScreen_TCMS20"/>
+          <include name="teardown"/>
+          <include name="mainScreen_TCMS11"/>
+          <include name="mainScreen_TCMS22"/>
+          <include name="mainScreen_TCMC01"/>
+          <include name="mainScreen_TCMS18"/>
+          <include name="mainScreen_TCMS09"/>
+          <include name="mainScreen_TCMS03"/>
+          <include name="mainScreen_TCMS14"/>
+          <include name="mainScreen_TCMS05"/>
+          <include name="mainScreen_TCMS16"/>
+          <include name="setup"/>
+          <include name="mainScreen_TCMS10"/>
+          <include name="mainScreen_TCMS21"/>
+          <include name="mainScreen_TCMS02"/>
+          <include name="mainScreen_TCMS13"/>
+          <include name="mainScreen_TCMS24"/>
+          <include name="mainScreen_TCMS01"/>
+          <include name="mainScreen_TCMS23"/>
+          <include name="mainScreen_TCMS04"/>
+          <include name="mainScreen_TCMS15"/>
         </methods>
       </class> <!-- Testcase.MainScreen -->
     </classes>
-  </test> <!-- Default test(failed) -->
-</suite> <!-- Failed suite [Default suite] -->
+  </test> <!-- Stars-Automation-Test(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

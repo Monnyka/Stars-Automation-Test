@@ -1,30 +1,16 @@
-package Testcase;
+package Test;
 
+import Testcase.BaseClass;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-public class ChangePassword extends Login {
+public class ChangePassword extends BaseClass {
 
     @Test
     public void ChangePassword_TCCP01() {
         //login
-        MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
-        emailField.sendKeys("nykanano@gmail.com");
-
-        MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
-        passwordField.sendKeys("Stars@2019");
-
-        MobileElement btnShowPassword = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Show password\"]"));
-        btnShowPassword.click();
-
-        MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
-        btnLogin.click();
-
-        MobileElement textViewFingerPrintLater = driver.findElement(By.id("com.pathmazing.stars:id/text_view_fingerprint_later"));
-        textViewFingerPrintLater.click();
-
-        //
+        loginStaff();
         MobileElement mainScreenMenu = driver.findElement(By.id("com.pathmazing.stars:id/image_view_menu"));
         mainScreenMenu.click();
 

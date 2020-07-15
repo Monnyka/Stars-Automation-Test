@@ -1,5 +1,6 @@
-package Testcase;
+package Test;
 
+import Testcase.BaseClass;
 import io.appium.java_client.MobileElement;
 import org.openqa.selenium.By;
 import org.testng.Assert;

@@ -30,7 +30,7 @@ public class BaseClass {
     public AppiumDriver<MobileElement> driver;
 
     @BeforeTest
-    public void setup() throws MalformedURLException {
+    public void setup() {
         try {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("deviceName", "oneplus");
@@ -40,7 +40,8 @@ public class BaseClass {
             cap.setCapability("appPackage", "com.pathmazing.stars");
             cap.setCapability("appActivity", "com.pathmazing.stars.ui.activities.SplashScreen2Activity");//LoginActivity
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
-            driver = new AppiumDriver<MobileElement>(url, cap);
+            driver = new AppiumDriver<>(url, cap);
+            //mobile element
             waitImplicitly();
 
         } catch (Exception exp) {
@@ -169,6 +170,15 @@ public class BaseClass {
         clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/text_view_fingerprint_later");
+    }
+
+    public void loginStaff2(){
+        String userEmail = readExcelFile(6,1 ,"userData");
+        String userPassword = readExcelFile(12,1,"userData");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email",userEmail);
+        sendKeyById("com.pathmazing.stars:id/edit_text_password",userPassword);
+        clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
+        clickById("com.pathmazing.stars:id/button_login");
     }
 
     public void logout(){

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/PathmazingPC/Stars/Stars-Automation-Test/src/main/java/Test">
+        <classes>
+            <class name="Test.ChangePassword">
+                <methods>
+                    <include name="ChangePassword_TCCP01"/>
+                </methods>
+            </class>
+            <class name="Test.Login">
+                <methods>
+                    <include name="logIn_TCLI01"/>
+                    <include name="logIn_TCLI02"/>
+                    <include name="logIn_TCLI03"/>
+                    <include name="logIn_TCLI04"/>
+                    <include name="logIn_TCLI05"/>
+                    <include name="logIn_TCLI06"/>
+                    <include name="logIn_TCLI07"/>
+                    <include name="logIn_TCLI08"/>
+                    <include name="logIn_TCLI09"/>
+                    <include name="logIn_TCLI10"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
