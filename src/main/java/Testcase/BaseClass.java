@@ -16,11 +16,12 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.Reporter;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
@@ -31,6 +32,29 @@ public class BaseClass {
 
     @BeforeTest
     public void setup() {
+//        try {
+//            DesiredCapabilities cap = new DesiredCapabilities();
+//            cap.setCapability("deviceName", "oneplus");
+//            cap.setCapability("udid", "88960370");
+//            cap.setCapability("platformName", "Android");
+//            cap.setCapability("platformVersion", "10");
+//            cap.setCapability("appPackage", "com.pathmazing.stars");
+//            cap.setCapability("appActivity", "com.pathmazing.stars.ui.activities.SplashScreen2Activity");//LoginActivity
+//            URL url = new URL("http://127.0.0.1:4723/wd/hub");
+//            driver = new AppiumDriver<>(url, cap);
+//            //mobile element
+//            driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
+//
+//        } catch (Exception exp) {
+//            System.out.print("Cause is: " + exp);
+//            System.out.print("Message: " + exp.getMessage());
+//            exp.printStackTrace();
+//        }
+
+    }
+
+    @BeforeClass
+    public void main0(){
         try {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("deviceName", "oneplus");
@@ -42,19 +66,18 @@ public class BaseClass {
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
             driver = new AppiumDriver<>(url, cap);
             //mobile element
-            waitImplicitly();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         } catch (Exception exp) {
             System.out.print("Cause is: " + exp);
             System.out.print("Message: " + exp.getMessage());
             exp.printStackTrace();
         }
-
     }
 
     @AfterTest
     public void teardown() {
-        //driver.quit();
+        driver.quit();
     }
 
     public void setFail() {

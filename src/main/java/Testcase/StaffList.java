@@ -3,7 +3,7 @@ package Testcase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class StaffList extends BaseClass{
+public class StaffList extends BaseClass {
 
     @Test
     public void staffList_TCSL01(){

@@ -3,7 +3,7 @@ package Testcase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PrizesToRedeem extends BaseClass{
+public class PrizesToRedeem extends BaseClass {
 
     @Test
     public void prize_TCRI01(){

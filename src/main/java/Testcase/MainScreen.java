@@ -1,9 +1,15 @@
 package Testcase;
 
 import io.appium.java_client.MobileElement;
+import io.appium.java_client.TouchAction;
+import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import java.time.Duration;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
 
 public class MainScreen extends BaseClass {
 
@@ -32,7 +38,7 @@ public class MainScreen extends BaseClass {
             setFail();
             print("Wrong label");
         }
-        String earnedThisMonth = readExcelFile(2, 5, "userData");
+        String earnedThisMonth = readExcelFile(21, 1, "userData");
         String earnedThisMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_this_month");
         Assert.assertEquals(earnedThisMonth,earnedThisMonthNumber);
     }
@@ -40,23 +46,22 @@ public class MainScreen extends BaseClass {
     @Test
     public void mainScreen_TCMS02() {
         //Earn Last month
-        String earnedLastMonth = readExcelFile(2, 6, "userData");
+        String earnedLastMonth = readExcelFile(24, 1, "userData");
         String earnedLastMonthNumber = getText("com.pathmazing.stars:id/text_view_earn_point_last_month");
         Assert.assertEquals(earnedLastMonth,earnedLastMonthNumber);
-        String redeemableBalance = getText("com.pathmazing.stars:id/tv_title_redeemable");
-        Assert.assertEquals(redeemableBalance,"Redeemable Balance");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_title_redeemable"),"Redeemable Balance");
     }
 
     @Test
     public void mainScreen_TCMS03() {
-        String allTime = readExcelFile(2, 7,"userData");
+        String allTime = readExcelFile(27, 1,"userData");
         String allTimeNumber = getText("com.pathmazing.stars:id/text_view_earn_point_total");
         Assert.assertEquals(allTime,allTimeNumber);
     }
 
     @Test
     public void mainScreen_TCMS04() {
-        String redeemBalance = readExcelFile(2, 3,"userData");
+        String redeemBalance = readExcelFile(15, 1,"userData");
         String redeemBalanceNumber = getText("com.pathmazing.stars:id/text_view_redeem_star");
         Assert.assertEquals(redeemBalance,redeemBalanceNumber);
     }
@@ -67,6 +72,21 @@ public class MainScreen extends BaseClass {
         String navTitle = getText("com.pathmazing.stars:id/tv_title");
         Assert.assertEquals(navTitle,"Prizes To Redeem");
         clickById("com.pathmazing.stars:id/ic_back");
+    }
+
+    @Test
+    public void mainScreen_TCMS08() throws InterruptedException {
+        //Todo add function definition
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.tap(PointOption.point(525, 281)).perform();
+
+        Thread.sleep(4000);
+        TouchAction swipe = new TouchAction(driver);
+        swipe.press(PointOption.point(972,570))
+                .waitAction(waitOptions(Duration.ofMillis(800)))
+                .moveTo(PointOption.point(10,570))
+                .release()
+                .perform();
     }
 
     @Test
@@ -145,7 +165,7 @@ public class MainScreen extends BaseClass {
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[8]/android.view.ViewGroup/android.widget.RelativeLayout");
         String navTeamRankingTitle = getText("com.pathmazing.stars:id/text_view_toolbar_title");
-        if (!navTeamRankingTitle.equals("Top Team of the Month")) {
+        if (!navTeamRankingTitle.equals("Top Teams of the Month")) {
             setFail();
         }
         clickBtnBack();
@@ -173,7 +193,7 @@ public class MainScreen extends BaseClass {
     public void mainScreen_TCMS13() {
         clickById("com.pathmazing.stars:id/img_header_top_team");
         String navTeamRankingTitle = getText("com.pathmazing.stars:id/text_view_toolbar_title");
-        if (!navTeamRankingTitle.equals("Top Team of the Month")) {
+        if (!navTeamRankingTitle.equals("Top Teams of the Month")) {
             setFail();
         }
         clickBtnBack();
@@ -191,7 +211,6 @@ public class MainScreen extends BaseClass {
 
     @Test
     public void mainScreen_TCMS15() {
-        clickById("com.pathmazing.stars:id/img_header_top_staff");
         clickById("com.pathmazing.stars:id/img_header_top_staff");
         String navStaffRankingTitle = getText("com.pathmazing.stars:id/text_view_toolbar_title");
         if (!navStaffRankingTitle.equals("Top Staff of the Month")) {
@@ -228,7 +247,7 @@ public class MainScreen extends BaseClass {
     @Test
     public void mainScreen_TCMS21(){
         //Allocated Balance
-        String allocatedStars = readExcelFile(4,5, "userData");
+        String allocatedStars = readExcelFile(18,1, "userData");
         String allocatedStarsLabel = getText("com.pathmazing.stars:id/text_view_give_away_star");
         Assert.assertEquals(allocatedStarsLabel,allocatedStars);
         //Check Label Balance
@@ -238,11 +257,15 @@ public class MainScreen extends BaseClass {
 
     @Test
     public void mainScreen_TCMS22(){
-        clickById("com.pathmazing.stars:id/image_view_star_reward");
-        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView[2]");
-        String navTitle = getText("com.pathmazing.stars:id/employeeToolbarTitle");
-        Assert.assertNotNull(navTitle);
-        clickBtnBack();
+        //Tap on allocated Balance
+        String allocatedStarsLabel = getText("com.pathmazing.stars:id/text_view_give_away_star");
+        if(!allocatedStarsLabel.equals("0")) {
+            clickById("com.pathmazing.stars:id/image_view_star_reward");
+            clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.ImageView[2]");
+            String navTitle = getText("com.pathmazing.stars:id/employeeToolbarTitle");
+            Assert.assertNotNull(navTitle);
+            clickBtnBack();
+        }
     }
 
     @Test

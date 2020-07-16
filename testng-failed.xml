@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Default Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Stars-Automation-Test(failed)">
+    <classes>
+      <class name="TestOne.ChangePassword">
+        <methods>
+          <include name="teardown"/>
+          <include name="main"/>
+          <include name="main1"/>
+          <include name="setup"/>
+        </methods>
+      </class>
+      <class name="TestOne.Login">
+        <methods>
+          <include name="teardown"/>
+          <include name="main3"/>
+          <include name="main4"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- TestOne.Login -->
+    </classes>
+  </test> <!-- Stars-Automation-Test(failed) -->
+</suite> <!-- Failed suite [Default Suite] -->

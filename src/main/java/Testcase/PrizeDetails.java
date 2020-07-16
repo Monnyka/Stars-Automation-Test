@@ -1,10 +1,9 @@
 package Testcase;
 
-import io.appium.java_client.TouchAction;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class PrizeDetails extends BaseClass{
+public class PrizeDetails extends BaseClass {
 
     @Test
     public void prizeDetails_TCPD01() {
