@@ -270,7 +270,7 @@ public class MainScreen extends BaseClass {
 
     @Test
     public void mainScreen_TCMS23(){
-        // Tap on Staff button
+        //Tap on Staff button
         String staffLabel = getText("com.pathmazing.stars:id/tv_staff");
         Assert.assertEquals(staffLabel,"Staff");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.RelativeLayout/android.widget.RelativeLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.ImageView");

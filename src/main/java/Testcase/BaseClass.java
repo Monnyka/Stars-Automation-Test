@@ -12,6 +12,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -20,11 +21,16 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
+
+import static io.appium.java_client.touch.WaitOptions.waitOptions;
 
 public class BaseClass {
 
@@ -54,7 +60,7 @@ public class BaseClass {
     }
 
     @BeforeClass
-    public void main0(){
+    public void BeforeClass() {
         try {
             DesiredCapabilities cap = new DesiredCapabilities();
             cap.setCapability("deviceName", "oneplus");
@@ -65,7 +71,6 @@ public class BaseClass {
             cap.setCapability("appActivity", "com.pathmazing.stars.ui.activities.SplashScreen2Activity");//LoginActivity
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
             driver = new AppiumDriver<>(url, cap);
-            //mobile element
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
         } catch (Exception exp) {
@@ -77,13 +82,18 @@ public class BaseClass {
 
     @AfterTest
     public void teardown() {
-        driver.quit();
+        //driver.quit();
     }
 
     public void setFail() {
         ITestResult result = null;
         result.setStatus(ITestResult.FAILURE);
         Reporter.setCurrentTestResult(result);
+    }
+
+    public boolean checkViewDisplay(String id){
+        MobileElement element = driver.findElement(By.id(id));
+        return element.isDisplayed();
     }
 
     public void clickBtnBack() {
@@ -96,7 +106,7 @@ public class BaseClass {
         click.click();
     }
 
-    public void sendKeyById(String id, String key){
+    public void sendKeyById(String id, String key) {
         MobileElement sendKeyElement = driver.findElement(By.id(id));
         sendKeyElement.sendKeys(key);
     }
@@ -136,7 +146,7 @@ public class BaseClass {
         return value;
     }
 
-    public void writeExcelFile(int cRow, int cColumn,String sheetName, String value) {
+    public void writeExcelFile(int cRow, int cColumn, String sheetName, String value) {
         XSSFWorkbook wb;
         XSSFCell cell;
         XSSFSheet sh;
@@ -177,7 +187,36 @@ public class BaseClass {
         action.press(PointOption.point(x, startY)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(1000))).moveTo(PointOption.point(x, endY)).release().perform();
     }
 
-    public void waitImplicitly(){
+    public void scroll(int startX,int startY, int endX,int endY){
+        TouchAction swipe = new TouchAction(driver);
+        swipe.press(PointOption.point(startX,startY))
+                .waitAction(waitOptions(Duration.ofMillis(800)))
+                .moveTo(PointOption.point(endX,endY))
+                .release()
+                .perform();
+    }
+
+    public void longPress(int startX,int startY, int endX,int endY){
+        TouchAction swipe = new TouchAction(driver);
+        swipe.longPress(PointOption.point(startX,startY))
+                .waitAction(waitOptions(Duration.ofMillis(800)))
+                .moveTo(PointOption.point(endX,endY))
+                .release()
+                .perform();
+    }
+
+    public void clickOnReaction(String xpath,int mEndX){
+        MobileElement as = driver.findElement(By.xpath(xpath));
+        Point reactIconLocation = as.getLocation();
+        longPress(reactIconLocation.x,reactIconLocation.y,reactIconLocation.x+mEndX,reactIconLocation.y);
+    }
+
+
+    public void tap(int x,int y){
+        TouchAction touchAction = new TouchAction(driver);
+        touchAction.tap(PointOption.point(x, y)).perform();
+    }
+    public void waitImplicitly() {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }
 
@@ -185,31 +224,38 @@ public class BaseClass {
         System.out.print(message);
     }
 
-    public void loginStaff(){
-        String userEmail = readExcelFile(6,1 ,"userData");
-        String userPassword = readExcelFile(12,1,"userData");
-        sendKeyById("com.pathmazing.stars:id/edit_text_email",userEmail);
-        sendKeyById("com.pathmazing.stars:id/edit_text_password",userPassword);
+    public void loginStaff() {
+        String userEmail = readExcelFile(6, 1, "userData");
+        String userPassword = readExcelFile(12, 1, "userData");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", userEmail);
+        sendKeyById("com.pathmazing.stars:id/edit_text_password", userPassword);
         clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/text_view_fingerprint_later");
     }
 
-    public void loginStaff2(){
-        String userEmail = readExcelFile(6,1 ,"userData");
-        String userPassword = readExcelFile(12,1,"userData");
-        sendKeyById("com.pathmazing.stars:id/edit_text_email",userEmail);
-        sendKeyById("com.pathmazing.stars:id/edit_text_password",userPassword);
+    public void loginStaff2() {
+        String userEmail = readExcelFile(6, 1, "userData");
+        String userPassword = readExcelFile(12, 1, "userData");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", userEmail);
+        sendKeyById("com.pathmazing.stars:id/edit_text_password", userPassword);
         clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
         clickById("com.pathmazing.stars:id/button_login");
     }
 
-    public void logout(){
+    public void logout() {
         //logout
         clickById("com.pathmazing.stars:id/image_view_menu");
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[10]/android.view.ViewGroup/android.widget.RelativeLayout");
         String message = getText("android:id/message");
-        Assert.assertEquals(message,"Are you sure you want to log out?");
+        Assert.assertEquals(message, "Are you sure you want to log out?");
         clickById("android:id/button1");
     }
+
+    public String getReferenceImageB64(String imgPath) throws URISyntaxException, IOException {
+        URL refImgUrl = getClass().getClassLoader().getResource(imgPath);
+        File refImgFile = Paths.get(refImgUrl.toURI()).toFile();
+        return Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
+    }
+
 }
