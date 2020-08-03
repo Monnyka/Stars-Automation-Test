@@ -1,20 +1,17 @@
 package Testcase;
 
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.util.List;
-
 public class RewardStars extends BaseClass{
     //Staff Reward
-
     @Test
     public void rewardStars_TCRS00(){
         loginStaff();
     }
+
+
 
     @Test
     public void rewardStars_TCRS01(){
@@ -96,7 +93,6 @@ public class RewardStars extends BaseClass{
         clickById("com.pathmazing.stars:id/menu_bar_favorite");
     }
 
-
     @Test
     public void rewardStars_TCRS11(){
     clickById("com.pathmazing.stars:id/menu_bar_change");
@@ -107,7 +103,6 @@ public class RewardStars extends BaseClass{
         //TODO: Check staff list view
         Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.RelativeLayout/android.widget.LinearLayout[1]/android.widget.TextView[1]"), readExcelFile(12,1,"rewardStaff"));
         clickById("com.pathmazing.stars:id/menu_bar_change");
-
     }
 
     @Test
@@ -173,14 +168,13 @@ public class RewardStars extends BaseClass{
         Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_point"), readExcelFile(5,7,"rewardStaff"));
 
         //Progress Bar
-        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_to_reward_balance"),readExcelFile(18,1,"userData") + " Stars");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_to_reward_balance"),readExcelFile(19,1,"userData") + " Stars");
 
         //Reason
         Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_reason"),"Reason");
 
         //Button
         Assert.assertEquals(getText("com.pathmazing.stars:id/button_submit"),"Send");
-
     }
 
     @Test
@@ -196,7 +190,16 @@ public class RewardStars extends BaseClass{
         clickById("com.pathmazing.stars:id/button_submit");
         Assert.assertEquals(getText("android:id/message"),"The Reward Star must be greater than 0");
         clickById("android:id/button1");
+    }
 
+    @Test
+    public void rewardStars_TCRS16_2(){
+        //TODO: Check limitation of category
+        sendKeyById("com.pathmazing.stars:id/edit_text_point","55");
+        sendKeyById("com.pathmazing.stars:id/edit_text_reason","Testing");
+        clickById("com.pathmazing.stars:id/button_submit");
+        Assert.assertEquals(getText("android:id/message"),"You cannot reward more than 50 stars");
+        clickById("android:id/button1");
     }
 
     public void checkProgressValue(){
@@ -208,22 +211,23 @@ public class RewardStars extends BaseClass{
     }
 
     @Test
-    public void rewardStars_TCRS16_2() throws InterruptedException {
+    public void rewardStars_TCRS16_3() throws InterruptedException {
         sendKeyById("com.pathmazing.stars:id/edit_text_point","10");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         checkProgressValue();
         sendKeyById("com.pathmazing.stars:id/edit_text_point","20");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         checkProgressValue();
         sendKeyById("com.pathmazing.stars:id/edit_text_point","50");
-        Thread.sleep(4000);
+        Thread.sleep(3000);
         checkProgressValue();
         sendKeyById("com.pathmazing.stars:id/edit_text_point","10");
     }
 
     @Test
-    public void rewardStars_TCRS16_3(){
+    public void rewardStars_TCRS16_4(){
         //Validate Reason
+        sendKeyById("com.pathmazing.stars:id/edit_text_reason","");
         clickById("com.pathmazing.stars:id/button_submit");
         Assert.assertEquals(getText("android:id/message"),"Please provide the reason");
         clickById("android:id/button1");
@@ -232,14 +236,13 @@ public class RewardStars extends BaseClass{
         clickById("com.pathmazing.stars:id/button_submit");
         Assert.assertEquals(getText("android:id/message"),"Please provide the reason");
         clickById("android:id/button1");
-
         sendKeyById("com.pathmazing.stars:id/edit_text_reason",readExcelFile(9,1,"rewardStaff")
                 + readExcelFile(10,1,"rewardStaff"));
         clickById("com.pathmazing.stars:id/button_submit");
     }
 
     @Test
-    public void rewardStars_TCRS16_4(){
+    public void rewardStars_TCRS16_5(){
         //Check Pop up Confirm
         Assert.assertEquals(getText("com.pathmazing.stars:id/textViewVipName"), readExcelFile(12,1,"rewardStaff"));
         Assert.assertEquals(getText("com.pathmazing.stars:id/textViewVipPosition"),readExcelFile(12,2,"rewardStaff"));
@@ -250,46 +253,17 @@ public class RewardStars extends BaseClass{
         clickById("com.pathmazing.stars:id/button_submit");
     }
 
-
     @Test
     public void rewardStars_TCRS17(){
-        //TODO: Verify Category List
+        //Successful reward
+        clickById("com.pathmazing.stars:id/button_ok_label");
+        Assert.assertEquals(getText("android:id/message"),"You have successfully rewarded 10 stars to Alvin Meta");
+        clickById("android:id/button1");
+        int allocated = Integer.parseInt(readExcelFile(18,1,"userData")) - 10;
+        String allocatedLeft = String.valueOf(allocated);
+        writeExcelFile(18,1,"userData",allocatedLeft);
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_multi_reward"),"Multi-Reward");
+        clickBtnBack();
     }
-
-    @Test
-    public void rewardStars_TCRS18(){
-        //TODO: Check limitation of category
-    }
-
-    @Test
-    public void rewardStars_TCRS19(){
-        //TODO: History Bottom sheet
-    }
-
-    @Test
-    public void rewardStars_TCRS20(){
-        //TODO: Successfully Send Reward Peer
-    }
-
-    @Test
-    public void rewardStars_TCRS21(){
-        //TODO: Successfully Send Reward Subordinate
-    }
-
-    @Test
-    public void rewardStars_TCRS22(){
-        //TODO: Successfully Send Reward Superior
-    }
-
-    @Test
-    public void rewardStars_TCRS23(){
-        //TODO: Open Account Receiver
-    }
-
-    @Test
-    public void rewardStars_TCRS24(){
-        //TODO: Check receiver balance
-    }
-
 
 }
