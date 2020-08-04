@@ -32,7 +32,6 @@ public class Login extends BaseClass {
             driver.findElement(By.id("android:id/button1")).click();
         } else {
             setFail();
-
         }
     }
 
@@ -49,14 +48,12 @@ public class Login extends BaseClass {
         String firstTimeMessage = txtOne.getText();
         MobileElement txtTwo = driver.findElement(By.id("com.pathmazing.stars:id/tv_title_second"));
         String secondTimeMessage = txtTwo.getText();
-
         if (firstTimeMessage.equals("Your email/phone number or password is incorrect") && secondTimeMessage.equals("If you are having trouble logging into your STARS app, please contact your HR department")) {
             MobileElement btnOk = driver.findElement(By.id("com.pathmazing.stars:id/button_cancel"));
             btnOk.click();
         } else {
             setFail();
         }
-
         //Second Time Unsuccessfully Attempt
         btnLogin.click();
         MobileElement txtThree = driver.findElement(By.id("com.pathmazing.stars:id/tv_title_third"));
@@ -67,12 +64,11 @@ public class Login extends BaseClass {
         } else {
             setFail();
         }
-
     }
 
     @Test //Log in with incorrect phone number format
     public void logIn_TCLI04() {
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","069910");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","06991");
         sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
         clickById("com.pathmazing.stars:id/button_login");
         String message = getText("android:id/message");
@@ -80,12 +76,11 @@ public class Login extends BaseClass {
             setFail();
         }
         clickById("android:id/button1");
-
     }
 
     @Test //Log in with more than 10 digit phone number
     public void logIn_TCLI05(){
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","0699104636457568679685634");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","0699104636457568679685635");
         sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/button_cancel");
@@ -93,7 +88,7 @@ public class Login extends BaseClass {
 
     @Test //Log in with non exist phone number
     public void logIn_TCLI06(){
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","79910179");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","7991017");
         sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/button_cancel");

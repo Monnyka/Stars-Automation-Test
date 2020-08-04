@@ -5,13 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class RewardStars extends BaseClass{
-    //Staff Reward
+
     @Test
     public void rewardStars_TCRS00(){
+        //Staff Reward
         loginStaff();
     }
-
-
 
     @Test
     public void rewardStars_TCRS01(){
@@ -25,7 +24,6 @@ public class RewardStars extends BaseClass{
         //Tap on QR Scan
         clickById("com.pathmazing.stars:id/image_view_star_reward");
         tap(770,1700);
-
     }
 
     @Test
@@ -112,7 +110,7 @@ public class RewardStars extends BaseClass{
 
     @Test
     public void rewardStars_TCRS14(){
-        //TODO: Tap on staff
+        //Tap on staff
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout[1]/android.widget.LinearLayout[3]");
     }
 
@@ -141,7 +139,8 @@ public class RewardStars extends BaseClass{
         int itemCount=0;
         for(int i = 1; true; i++){
             try{
-                driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView")).isDisplayed();
+                driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/" +
+                        "android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView")).isDisplayed();
                 Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView"), readExcelFile(2+i,6,"rewardStaff"));
                 print("\n"+getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView"+" "));
                 int j=1;
@@ -166,13 +165,10 @@ public class RewardStars extends BaseClass{
         clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView");
         Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_category"), readExcelFile(5,6,"rewardStaff"));
         Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_point"), readExcelFile(5,7,"rewardStaff"));
-
         //Progress Bar
         Assert.assertEquals(getText("com.pathmazing.stars:id/tv_to_reward_balance"),readExcelFile(19,1,"userData") + " Stars");
-
         //Reason
         Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_reason"),"Reason");
-
         //Button
         Assert.assertEquals(getText("com.pathmazing.stars:id/button_submit"),"Send");
     }
@@ -257,13 +253,73 @@ public class RewardStars extends BaseClass{
     public void rewardStars_TCRS17(){
         //Successful reward
         clickById("com.pathmazing.stars:id/button_ok_label");
-        Assert.assertEquals(getText("android:id/message"),"You have successfully rewarded 10 stars to Alvin Meta");
+        Assert.assertEquals(getText("android:id/message"),"Your request has been successfully submitted");
         clickById("android:id/button1");
         int allocated = Integer.parseInt(readExcelFile(18,1,"userData")) - 10;
         String allocatedLeft = String.valueOf(allocated);
         writeExcelFile(18,1,"userData",allocatedLeft);
         Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_multi_reward"),"Multi-Reward");
         clickBtnBack();
+    }
+
+    @Test
+    public void rewardStars_TCRS18() throws InterruptedException {
+        //login
+        logout();
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", "oliver.pa@mailinator.com");
+        sendKeyById("com.pathmazing.stars:id/edit_text_password", "Stars@2019");
+        clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
+        clickById("com.pathmazing.stars:id/button_login");
+        //Approve request
+        clickById("com.pathmazing.stars:id/image_view_notification");
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout");
+        //validate Screen
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_earn_point_this_month"),"10");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_sender"),"Leon Pin");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_sender_position"), "QA Tester");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_project_name_receiver"),"Alvin Meta");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_project_name_receiver_position"),"Android Developer");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_category"),"Effort: Good");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_reason"),
+                "\"" + readExcelFile(9,1,"rewardStaff") + readExcelFile(10,1,"rewardStaff")+"\"");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/button_deny"),"Deny");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/button_approve"),"Approve");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_sheet_title"),"History");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_from_who_only"), "From Leon Pin Only");
+        scroll(560,1670,560,350);
+        Thread.sleep(2000);
+        scroll(560,350,560,1670);
+        clickById("com.pathmazing.stars:id/button_deny");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/title"), "Enter Reason");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/edit_text_reject_message"),"Reason");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/button_reject"), "OK");
+        //Click out side dismiss pop up
+        tap(550,470);
+        clickById("com.pathmazing.stars:id/button_deny");
+        //Send Reason
+        sendKeyById("com.pathmazing.stars:id/edit_text_reject_message","Reject by manager...");
+        clickById("com.pathmazing.stars:id/button_reject");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_approved_by"), "Denied by");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_decider_approved"),"You");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_deny_reason"), "\"Reject by manager...\"");
+        clickBtnBack();
+    }
+
+    @Test
+    public void rewardStars_TCRS19(){
+        //check notification
+        Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]"), "Leon Pin's request to reward 10 stars to Alvin Meta is denied.");
+        Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[2]"), "a few seconds ago ");
+        clickBtnBack();
+        logout();
+    }
+
+    @Test
+    public void rewardStars_TCRS20(){
+        //Request Again
+        loginStaff();
+        rewardStars_TCRS01();
+        rewardStars_TCRS14();
     }
 
 }
