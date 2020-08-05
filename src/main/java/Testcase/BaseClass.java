@@ -26,8 +26,13 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Base64;
+import java.util.Date;
+import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import static io.appium.java_client.touch.WaitOptions.waitOptions;
@@ -72,7 +77,6 @@ public class BaseClass {
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
             driver = new AppiumDriver<>(url, cap);
             driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-
         } catch (Exception exp) {
             System.out.print("Cause is: " + exp);
             System.out.print("Message: " + exp.getMessage());
@@ -256,6 +260,20 @@ public class BaseClass {
         URL refImgUrl = getClass().getClassLoader().getResource(imgPath);
         File refImgFile = Paths.get(refImgUrl.toURI()).toFile();
         return Base64.getEncoder().encodeToString(Files.readAllBytes(refImgFile.toPath()));
+    }
+
+    public void loginAsManager(){
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", "oliver.pa@mailinator.com");
+        sendKeyById("com.pathmazing.stars:id/edit_text_password", "Stars@2019");
+        clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
+        clickById("com.pathmazing.stars:id/button_login");
+    }
+
+    public String getTimeAMPM(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("h:mm aa");
+        String formattedDate = dateFormat.format(new Date()).toString();
+        System.out.println(formattedDate);
+        return formattedDate;
     }
 
 }

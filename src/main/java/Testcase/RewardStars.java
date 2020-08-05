@@ -6,9 +6,9 @@ import org.testng.annotations.Test;
 
 public class RewardStars extends BaseClass{
 
+    //Reward peer.......................................................................................................
     @Test
     public void rewardStars_TCRS00(){
-        //Staff Reward
         loginStaff();
     }
 
@@ -141,13 +141,13 @@ public class RewardStars extends BaseClass{
             try{
                 driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/" +
                         "android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView")).isDisplayed();
-                Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView"), readExcelFile(2+i,6,"rewardStaff"));
+                Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView"), readExcelFile(2+i,1,"rewardCat"));
                 print("\n"+getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout["+i+"]/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView"+" "));
                 int j=1;
                 if(i==5 || i==6) {
                     j = 2;
                 }
-                    Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[" + i + "]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView[" + j + "]"), readExcelFile(2 + i, 7, "rewardStaff"));
+                    Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[" + i + "]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView[" + j + "]"), readExcelFile(2 + i, 2, "rewardCat"));
                     print(" " + getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[" + i + "]/android.widget.RelativeLayout/android.widget.LinearLayout/android.widget.TextView[" + j + "]"));
             }catch ( Exception e){
                 break;
@@ -317,9 +317,141 @@ public class RewardStars extends BaseClass{
     @Test
     public void rewardStars_TCRS20(){
         //Request Again
-        loginStaff();
-        rewardStars_TCRS01();
-        rewardStars_TCRS14();
+        loginStaff2();
+        clickById("com.pathmazing.stars:id/image_view_star_reward");
+        tap(280,1700);
+        //Search Alvin
+        clickById("com.pathmazing.stars:id/menu_bar_search");
+        sendKeyById("com.pathmazing.stars:id/tvSearchEmployee","Alvin");
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.RelativeLayout");
+        //On Reward Screen: Choose Categories
+        clickById("com.pathmazing.stars:id/edit_text_category");
+        //Tap on effort: good
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.LinearLayout/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[3]/android.widget.RelativeLayout/android.view.View");
+        //Type in the reason
+        sendKeyById("com.pathmazing.stars:id/edit_text_reason", readExcelFile(9,1,"rewardStaff")+readExcelFile(10,1,"rewardStaff"));
+        //Tap on button Send
+        clickById("com.pathmazing.stars:id/button_submit");
+        //Tap on submit button pop up
+        clickById("com.pathmazing.stars:id/button_ok_label");
+        //check validation Email
+        Assert.assertEquals(getText("android:id/message"),"Your request has been successfully submitted");
+        //Tap on button OK
+        clickById("android:id/button1");
+        clickBtnBack();
+        logout();
     }
+
+    @Test
+    public void rewardStars_TCRS21() throws InterruptedException {
+        //Approve Request
+        loginAsManager();
+        clickById("com.pathmazing.stars:id/image_view_notification");
+        //Tap on notification Item
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout");
+        //Tap on Approve Button
+        clickById("com.pathmazing.stars:id/button_approve");
+        //Pop up confirmed message
+        Assert.assertEquals(getText("android:id/message"), "Do you want to approve this request?");
+        //Tap No
+        clickById("android:id/button2");
+        //Tap Yes
+        clickById("com.pathmazing.stars:id/button_approve");
+        clickById("android:id/button1");
+        Thread.sleep(2500);
+    }
+
+    @Test
+    public void rewardStars_TCRS22() {
+        //Check Approve Screen
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_approved_by"),"Approved by");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_decider_approved"),"You");
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_month_approved_by"), getTimeAMPM());
+        writeExcelFile(19,1, "rewardStaff", getTimeAMPM());
+        driver.navigate().back();
+        Assert.assertEquals(getTextByXpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]"),
+                "Leon Pin rewards 10 stars to Alvin Meta.");
+        clickBtnBack();
+        logout();
+    }
+
+    @Test
+    public void rewardStars_TCRS23(){
+        //Check pop up Reward Approved
+        loginStaff2();
+        //Check name
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tvRewardedName"),"Alvin Meta");
+        //Check position
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tvRewardedPosition"),"Android Developer");
+        //Check reward Point
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tvRewardedPoint"), "10");
+        //Check reward Categories
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_category"),"Effort: Good");
+        //Check Reason
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_reason"), "\"" + readExcelFile(9,1,"rewardStaff")+readExcelFile(10,1,"rewardStaff") + "\"" );
+        //Check Approved Time
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_time_ago"),readExcelFile(19,1, "rewardStaff"));
+        clickById("com.pathmazing.stars:id/btnDone");
+        //--write to excel
+        int reason = Integer.parseInt(readExcelFile(10,1, "rewardStaff"))+1;
+        String reasonNumber = String.valueOf(reason);
+        writeExcelFile(10,1,"rewardStaff",reasonNumber);
+    }
+
+    //Reward Subordinate..................................................................................................................
+
+    @Test
+    public void rewardStars_TCRS24(){
+
+    }
+
+    @Test
+    public void rewardStars_TCRS25(){
+        //Check pop up receive
+
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_star"),"10");
+        //Check Sender name
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_sender"), "Leon Pin");
+        //Position
+        Assert.assertEquals(getText(""),"QA Tester");
+        //Check Receiver Name
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_receiver"), "Alvin Meta");
+        //Position
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_position_receiver"),"Android Developer");
+        //Reward Categories
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_category"),"Effort: Good");
+        //Check Reason
+        Assert.assertEquals(getText("com.pathmazing.stars:id/tv_reason"), "\"" + readExcelFile(9,1,"rewardStaff")+readExcelFile(10,1,"rewardStaff") + "\"" );
+        //Check Approve Time
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_time_ago"), readExcelFile(19,1,"rewardStaff"));
+        tap(500,1800);
+    }
+
+    @Test
+    public void rewardStars_TCRS26(){
+        //Check pop up notification
+
+        clickById("com.pathmazing.stars:id/image_view_notification");
+        //Check notification text list
+        Assert.assertEquals(getText("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.LinearLayout/android.widget.TextView[1]"), "Leon Pin rewards you 10 stars.");
+        //Tap on notification
+        clickXpathElement("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup[2]/androidx.recyclerview.widget.RecyclerView/android.widget.LinearLayout[1]/android.widget.LinearLayout");
+        //Check Sender name
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_sender"), "Leon Pin");
+        //Position
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_position_sender"),"QA Tester");
+        //Check Receiver name
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_name_receiver"),"Alvin Meta");
+        //Position
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_position_receiver"),"Android Developer");
+        //Categories
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_category"),"Effort: Good");
+        //Reason
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_reason"),"\"" + readExcelFile(9,1,"rewardStaff")+readExcelFile(10,1,"rewardStaff") + "\"" );
+        //Approved Time
+        Assert.assertEquals(getText("com.pathmazing.stars:id/text_view_time_ago"), readExcelFile(19,1,"rewardStaff"));
+
+    }
+
 
 }
