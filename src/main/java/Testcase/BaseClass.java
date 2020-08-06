@@ -127,6 +127,7 @@ public class BaseClass {
 
     public String getTextByXpath(String element) {
         MobileElement getText = driver.findElement(By.xpath(element));
+        print(getText.getText()+"\n");
         return getText.getText();
     }
 
