@@ -248,6 +248,16 @@ public class BaseClass {
         clickById("com.pathmazing.stars:id/button_login");
     }
 
+    public void login(String account, String password, boolean fingerprint) {
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", account);
+        sendKeyById("com.pathmazing.stars:id/edit_text_password", password);
+        clickXpathElement("//android.widget.ImageButton[@content-desc=\"Show password\"]");
+        clickById("com.pathmazing.stars:id/button_login");
+        if(fingerprint){
+            clickById("com.pathmazing.stars:id/text_view_fingerprint_later");
+        }
+    }
+
     public void logout() {
         //logout
         clickById("com.pathmazing.stars:id/image_view_menu");
