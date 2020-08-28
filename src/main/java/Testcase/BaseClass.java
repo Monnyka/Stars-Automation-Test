@@ -221,6 +221,7 @@ public class BaseClass {
         TouchAction touchAction = new TouchAction(driver);
         touchAction.tap(PointOption.point(x, y)).perform();
     }
+
     public void waitImplicitly() {
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
     }

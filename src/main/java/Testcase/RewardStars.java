@@ -187,7 +187,7 @@ public class RewardStars extends BaseClass{
         //Reward with 0 Stars
         sendKeyById("com.pathmazing.stars:id/edit_text_point","0");
         clickById("com.pathmazing.stars:id/button_submit");
-        Assert.assertEquals(getText("android:id/message"),"The Reward Star must be greater than 0");
+        Assert.assertEquals(getText("android:id/message"),"Please enter the number of stars to reward");
         clickById("android:id/button1");
     }
 

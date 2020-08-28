@@ -36,9 +36,9 @@ public class Login extends BaseClass {
     }
 
     @Test //Log in with the incorrect email and password
-    public void logIn_TCLI03() {
+    public void logIn_TCLI03() throws InterruptedException {
         MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
-        emailField.sendKeys("nykanano1231232@gmail.com");
+        emailField.sendKeys("nykanano"+readExcelFile(1,1,"login")+"@gmail.com");
         MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
         passwordField.sendKeys("Stars@2019");
         MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
@@ -55,6 +55,7 @@ public class Login extends BaseClass {
             setFail();
         }
         //Second Time Unsuccessfully Attempt
+        Thread.sleep(200);
         btnLogin.click();
         MobileElement txtThree = driver.findElement(By.id("com.pathmazing.stars:id/tv_title_third"));
         String thirdTimeMessage = txtThree.getText();
@@ -80,24 +81,29 @@ public class Login extends BaseClass {
 
     @Test //Log in with more than 10 digit phone number
     public void logIn_TCLI05(){
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","0699104636457568679685635");
+        String digit = readExcelFile(1,1,"login");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", String.valueOf(digit));
         sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/button_cancel");
+        writeExcelFile(1,1,"login", digit+1);
     }
 
     @Test //Log in with non exist phone number
     public void logIn_TCLI06(){
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","7991017");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","79910170");
+        int phone = Integer.parseInt(readExcelFile(2,1,"login"))+1;
+        sendKeyById("com.pathmazing.stars:id/edit_text_email", String.valueOf(phone));
         sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/button_cancel");
+//        Assert.assertEquals(getText(""),"Please enter a valid phone number");
     }
 
-    @Test //Lig in with the correct Phone number
+    @Test //Log in with the correct Phone number
     public void logIn_TCLI07(){
-        sendKeyById("com.pathmazing.stars:id/edit_text_email","069910164");
-        sendKeyById("com.pathmazing.stars:id/edit_text_password","Stars@2019");
+        sendKeyById("com.pathmazing.stars:id/edit_text_email","99100103");
+        sendKeyById("com.pathmazing.stars:id/edit_text_password","UK52@pdr");
         clickById("com.pathmazing.stars:id/button_login");
         clickById("com.pathmazing.stars:id/text_view_fingerprint_later");
         clickById("com.pathmazing.stars:id/image_view_menu");
@@ -107,23 +113,23 @@ public class Login extends BaseClass {
         clickById("android:id/button1");
     }
 
-    @Test
-    public void logIn_TCLI08() {
-        MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
-        emailField.sendKeys("nykanano@gmail.com");
-        MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
-        passwordField.sendKeys("Stars@2019");
-        MobileElement btnShowPassword = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Show password\"]"));
-        btnShowPassword.click();
-        MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
-        btnLogin.click();
-        logout();
-    }
+//    @Test
+//    public void logIn_TCLI08() {
+//        MobileElement emailField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_email"));
+//        emailField.sendKeys("nykanano@gmail.com");
+//        MobileElement passwordField = driver.findElement(By.id("com.pathmazing.stars:id/edit_text_password"));
+//        passwordField.sendKeys("Stars@2019");
+//        MobileElement btnShowPassword = driver.findElement(By.xpath("//android.widget.ImageButton[@content-desc=\"Show password\"]"));
+//        btnShowPassword.click();
+//        MobileElement btnLogin = driver.findElement(By.id("com.pathmazing.stars:id/button_login"));
+//        btnLogin.click();
+//        logout();
+//    }
 
     @Test //Log in First Time
     public void logIn_TCLI09(){
         sendKeyById("com.pathmazing.stars:id/edit_text_email","alvin.pa@mailinator.com");
-        sendKeyById("com.pathmazing.stars:id/edit_text_password","6BKE7L");
+        sendKeyById("com.pathmazing.stars:id/edit_text_password","OD84@glz");
         clickById("com.pathmazing.stars:id/button_login");
         String navTitle = getText("com.pathmazing.stars:id/text_view_force_set_password_title");
         Assert.assertEquals(navTitle,"Set New Password");
@@ -139,7 +145,7 @@ public class Login extends BaseClass {
         clickById("android:id/button1");
 
         //Validate field confirm new password
-        sendKeyById("com.pathmazing.stars:id/edit_text_new_password","Stars@2019");
+        sendKeyById("com.pathmazing.stars:id/edit_text_new_password","UK52@pdr");
         clickById("com.pathmazing.stars:id/button_submit");
         message = getText("android:id/message");
         Assert.assertEquals(message,"Please enter your confirm new password");
@@ -149,7 +155,8 @@ public class Login extends BaseClass {
         String termsText = getText("com.pathmazing.stars:id/term_condition");
         Assert.assertEquals(termsText,"By updating your password, you agree to STARS Terms of Use and Privacy Policy");
         clickBtnBack();
-        loginStaff2();
+
+        login("leon.pa@mailinator.com","UK52@pdr",false);
         logout();
     }
 
